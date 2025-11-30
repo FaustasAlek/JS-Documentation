@@ -1,2 +1,0 @@
-# JS-Documentation
-Group project.
