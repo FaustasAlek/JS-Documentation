@@ -103,7 +103,6 @@ const INPUT_STATE_REPEATING = 2;
 
 const BLOCK_EMPTY = -1;
 
-// Get random value from {0, 1, ..., n - 1}
 function getRandomIndex(n) {
   return Math.floor(Math.random() * n);
 }
@@ -156,12 +155,10 @@ function canGridFitShape(grid, shape, shapeX, shapeY) {
         return true;
       }
 
-      // Below the floor - collision
       if (gridY >= grid.length) {
         return false;
       }
 
-      // Outside the walls - collision
       const gridX = shapeX + j;
       if (gridX < 0 || gridX >= grid[0].length) {
         return false;
@@ -210,7 +207,6 @@ function clearCompleteLines(grid) {
     }
   }
 
-  // Clear top rows
   for (let i = 0; i < clearedLines; i++) {
     grid[i].fill(BLOCK_EMPTY);
   }
@@ -338,7 +334,7 @@ function update(state, inputs, dt) {
   if (!state.isGameStarted) {
     if (inputs.start) {
       state.isGameStarted = true;
-      // Hide start screen, show canvas
+
       document.getElementById('start-screen').classList.add('hidden');
       document.getElementById('game').classList.add('visible');
     }
@@ -374,7 +370,6 @@ function drawShape(ctx, shape, colorId, x, y) {
 }
 
 function render(ctx, state) {
-  // Don't render anything if game hasn't started
   if (!state.isGameStarted) {
     return;
   }
@@ -446,7 +441,6 @@ function startCollectingInputs(inputs) {
 
     const inputType = KEY_TO_INPUT_TYPE[event.key];
     if (inputType) {
-      // Prevent default Tab behavior
       if (event.key === 'Tab') {
         event.preventDefault();
       }
@@ -467,7 +461,6 @@ function main() {
 
   startCollectingInputs(inputs);
 
-  // Add start button click handler
   const startButton = document.getElementById('start-button');
   if (startButton) {
     startButton.addEventListener('click', () => {
@@ -492,7 +485,6 @@ function main() {
   requestAnimationFrame(loop);
 }
 
-// Wait for DOM to be fully loaded before starting
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', main);
 } else {
