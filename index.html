@@ -94,7 +94,6 @@
             <p>The value of <code>PI</code> is constant and cannot be changed.</p>
         </section>
 
-        <!-- Cia bus sukuriamas interaktyvus zaidimas tetris Useriui pasizaisti -->
         <section id="Game_tetris" class="main-section">
             <header>Game tetris</header>
             <p>This is one of the cool things that you can program using JavaScript:</p>
@@ -105,9 +104,27 @@
             As the game progresses, the pieces fall faster, making it harder to keep the board clear. 
             The game ends when the stack of pieces reaches the top.   
             </p>
+            
+            <div class="tetris-container">
+                <div class="tetris-controls">
+                    <p><strong>Controls:</strong></p>
+                    <ul>
+                        <li><strong>A/D</strong> - Move left/right</li>
+                        <li><strong>W</strong> - Rotate piece</li>
+                        <li><strong>S</strong> - Move down faster</li>
+                        <li><strong>Tab</strong> - Hard drop</li>
+                        <li><strong>R</strong> - Restart game</li>
+                    </ul>
+                </div>
+                <div id="start-screen">
+                    <button id="start-button">Start Game</button>
+                    <p class="start-hint">or press <strong>Space</strong> to start</p>
+                </div>
+                <canvas id="game"></canvas>
+            </div>
         </section>
-
-
     </main>
+
+    <script src="tetris.js"></script>
 </body>
 </html>
