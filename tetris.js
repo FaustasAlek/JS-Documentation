@@ -137,7 +137,6 @@ function getInitialState() {
   return {
     isGameOver: false,
     isGameStarted: false,
-    score: 0,
     gravity: {
       progress: 0,
       speed: GRAVITY_SPEED,
@@ -222,8 +221,7 @@ function clearCompleteLines(grid) {
 function handleCurrentPieceLanding(state) {
   attachToGrid(state.grid, state.currentPiece);
 
-  const clearedLines = clearCompleteLines(state.grid);
-  state.score += clearedLines;
+  clearCompleteLines(state.grid);
 
   const newPiece = createCurrentPiece(state.nextShapeId);
   const { shape, position } = newPiece;
@@ -376,6 +374,11 @@ function drawShape(ctx, shape, colorId, x, y) {
 }
 
 function render(ctx, state) {
+  // Don't render anything if game hasn't started
+  if (!state.isGameStarted) {
+    return;
+  }
+
   const { grid, currentPiece, nextShapeId } = state;
 
   ctx.fillStyle = BLOCK_BACKGROUND;
@@ -415,10 +418,6 @@ function render(ctx, state) {
   ctx.fillStyle = COLOR_FONT;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-
-  const score = `${state.score}`.padStart(7, '0');
-  ctx.fillText('Score:', SIDEBAR_CONTENT_X, SIDEBAR_CONTENT_Y + BLOCK_SIZE * 5);
-  ctx.fillText(score, SIDEBAR_CONTENT_X, SIDEBAR_CONTENT_Y + BLOCK_SIZE * 6);
 
   if (state.isGameOver) {
     ctx.fillStyle = COLOR_GAME_OVER_OVERLAY;
@@ -470,11 +469,13 @@ function main() {
 
   // Add start button click handler
   const startButton = document.getElementById('start-button');
-  startButton.addEventListener('click', () => {
-    state.isGameStarted = true;
-    document.getElementById('start-screen').classList.add('hidden');
-    document.getElementById('game').classList.add('visible');
-  });
+  if (startButton) {
+    startButton.addEventListener('click', () => {
+      state.isGameStarted = true;
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('game').classList.add('visible');
+    });
+  }
 
   let previousTime = performance.now();
 
@@ -491,4 +492,9 @@ function main() {
   requestAnimationFrame(loop);
 }
 
-main();
+// Wait for DOM to be fully loaded before starting
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', main);
+} else {
+  main();
+}
