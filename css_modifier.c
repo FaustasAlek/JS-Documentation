@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "css_modifier.h"
 
 #define CSS_FILENAME "styles.css"
 #define BG_COLOR_VAR "--bg" // CSS variable for background color
-#define NEW_BG_COLOR "red" // Example new background color
-#define DECLRATION_SIZE 100 // Static size for declaration line symbol count "e.g. --bg: red;"
+#define DECLARATION_SIZE 100 // Static size for declaration line symbol count "e.g. --bg: red;"
 
 // Function to read a whole file into a string
 char* read_file_to_string(const char* filename) {
-    FILE* file = fopen(filename, "r");
+    FILE* file = fopen(filename, "rb");
     if (!file) {
         perror("Failed to open file");
         return NULL;
@@ -90,14 +90,14 @@ char* str_replace(const char* orig, const char* rep, const char* with) {
 }
 
 
-void modify_css_background() {
+void modify_css_background(const char* new_color) {
     char* css_content = read_file_to_string(CSS_FILENAME);
     if (!css_content) {
         return;
     }
 
-    char old_line[DECLRATION_SIZE];
-    char new_line[DECLRATION_SIZE];
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
 
     char* line_start = strstr(css_content, BG_COLOR_VAR);
 
@@ -111,13 +111,12 @@ void modify_css_background() {
             old_line[line_length] = '\0';
 
             // Create the new line
-            sprintf(new_line, "%s: %s;", BG_COLOR_VAR, NEW_BG_COLOR);
+            sprintf(new_line, "%s: %s;", BG_COLOR_VAR, new_color);
 
             // Replace the line
             char* final_css = str_replace(css_content, old_line, new_line);
 
-            // Write the modified content back to the CSS file
-            FILE* cssFile = fopen(CSS_FILENAME, "w");
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
             if (cssFile == NULL) {
                 perror("Failed to open styles.css for writing");
             } else {
@@ -132,9 +131,4 @@ void modify_css_background() {
     }
 
     free(css_content);
-}
-
-int main() {
-    modify_css_background();
-    return 0;
 }
