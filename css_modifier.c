@@ -132,3 +132,185 @@ void modify_css_background(const char* new_color) {
 
     free(css_content);
 }
+
+void modify_css_text_color(const char* new_color) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--text"); // Target --text variable
+
+    if (line_start) {
+        // Find the end of the line
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            // Extract the full original line
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+
+            // Create the new line
+            sprintf(new_line, "--text: %s;", new_color); // Use --text as the variable
+
+            // Replace the line
+            char* final_css = str_replace(css_content, old_line, new_line);
+
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified text color in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--text' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
+
+void modify_css_card_color(const char* new_color) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--card");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            sprintf(new_line, "--card: %s;", new_color);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified card color in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--card' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
+
+void modify_css_muted_color(const char* new_color) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--muted");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            sprintf(new_line, "--muted: %s;", new_color);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified muted color in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--muted' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
+
+void modify_css_code_bg_color(const char* new_color) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--code-bg");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            sprintf(new_line, "--code-bg: %s;", new_color);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified code background color in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--code-bg' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
+
+void modify_css_code_text_color(const char* new_color) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--code-text");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            sprintf(new_line, "--code-text: %s;", new_color);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified code text color in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--code-text' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
