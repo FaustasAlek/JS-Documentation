@@ -10,6 +10,18 @@
     --code-text: #1f2933;
 }
 
+.darkmode {
+    --bg: #0f172a;
+    --card: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --accent: #334155;
+    --accent-soft: #1e293b;
+    --border: #1f2937;
+    --code-bg: #020617;
+    --code-text: #e5e7eb;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -26,6 +38,38 @@ body {
     color: var(--text);
     line-height: 1.7;
 }
+/* theme toggle button */
+#theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--code-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border: 3px solid var(--bg);
+    cursor: pointer;
+}
+
+#theme-switch svg{
+    fill: var(--bg);
+}
+
+#theme-switch svg:last-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child{
+    display: block;
+}
 
 #navbar {
     width: 260px;
@@ -36,6 +80,7 @@ body {
     border-right: 1px solid var(--border);
     box-shadow: 8px 0 22px rgba(17, 24, 39, 0.05);
     overflow-y: auto;
+    z-index: 10;
 }
 
 #navbar header {
