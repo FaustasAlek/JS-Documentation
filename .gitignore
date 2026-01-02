@@ -1,0 +1,27 @@
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+
+# --- Build outputs ---
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.so
+*.dll
+
+# --- Debug / misc ---
+*.log
+
+# --- Common build folders ---
+build/
+dist/
+bin/
+obj/
+
+# --- CMake (jei kada naudosite) ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
