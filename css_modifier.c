@@ -314,3 +314,73 @@ void modify_css_code_text_color(const char* new_color) {
     }
     free(css_content);
 }
+
+void modify_css_font(const char* new_font) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--font");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            snprintf(new_line, sizeof(new_line), "--font: %s;", new_font);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified font in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--font' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}
+
+void modify_css_font_size(const char* new_size) {
+    char* css_content = read_file_to_string(CSS_FILENAME);
+    if (!css_content) {
+        return;
+    }
+
+    char old_line[DECLARATION_SIZE];
+    char new_line[DECLARATION_SIZE];
+
+    char* line_start = strstr(css_content, "--font-size");
+
+    if (line_start) {
+        char* line_end = strchr(line_start, ';');
+        if (line_end) {
+            long line_length = line_end - line_start + 1;
+            strncpy(old_line, line_start, line_length);
+            old_line[line_length] = '\0';
+            snprintf(new_line, sizeof(new_line), "--font-size: %s;", new_size);
+            char* final_css = str_replace(css_content, old_line, new_line);
+            FILE* cssFile = fopen(CSS_FILENAME, "wb");
+            if (cssFile == NULL) {
+                perror("Failed to open styles.css for writing");
+            } else {
+                fputs(final_css, cssFile);
+                fclose(cssFile);
+                printf("Successfully modified font size in %s\n", CSS_FILENAME);
+            }
+            free(final_css);
+        }
+    } else {
+        printf("Could not find the '--font-size' variable in %s\n", CSS_FILENAME);
+    }
+    free(css_content);
+}

@@ -8,6 +8,8 @@ void handle_card_menu();
 void handle_muted_menu();
 void handle_code_bg_menu();
 void handle_code_text_menu();
+void handle_font_menu();
+void handle_font_size_menu();
 
 int main(){
     menu();
@@ -24,6 +26,8 @@ void menu(){
         printf("3 - Muted text color\n");
         printf("4 - Code background color\n");
         printf("5 - Code text color\n");
+        printf("6 - Website font family\n");
+        printf("7 - Website font size\n");
         printf("9 - Exit\n");
 
         if (scanf("%d", &choice) != 1) {
@@ -50,6 +54,12 @@ void menu(){
                 break;
             case 5:
                 handle_code_text_menu();
+                break;
+            case 6:
+                handle_font_menu();
+                break;
+            case 7:
+                handle_font_size_menu();
                 break;
             case 9:
                 printf("Exiting.\n");
@@ -232,5 +242,64 @@ void handle_code_text_menu() {
         modify_css_code_text_color("#1f2933");
     } else {
         printf("Unknown color.\n");
+    }
+}
+
+void handle_font_menu() {
+    int fontChoice;
+    printf("Change font family:\n");
+    printf("0 - default sans\n");
+    printf("1 - serif\n");
+    printf("2 - mono\n");
+    printf("3 - rounded sans\n");
+    printf("Enter choice: ");
+
+    if (scanf("%d", &fontChoice) != 1) {
+        printf("Invalid font choice.\n");
+        while(getchar() != '\n');
+        return;
+    }
+
+    if(fontChoice == 0){
+        modify_css_font("\"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif");
+    } else if(fontChoice == 1){
+        modify_css_font("\"Georgia\", \"Times New Roman\", serif");
+    } else if(fontChoice == 2){
+        modify_css_font("\"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, monospace");
+    } else if(fontChoice == 3){
+        modify_css_font("\"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif");
+    } else {
+        printf("Unknown font.\n");
+    }
+}
+
+void handle_font_size_menu() {
+    int sizeChoice;
+    printf("Change font size:\n");
+    printf("0 - 14px\n");
+    printf("1 - 16px\n");
+    printf("2 - 18px\n");
+    printf("3 - 20px\n");
+    printf("4 - default\n");
+    printf("Enter choice: ");
+
+    if (scanf("%d", &sizeChoice) != 1) {
+        printf("Invalid size choice.\n");
+        while(getchar() != '\n');
+        return;
+    }
+
+    if(sizeChoice == 0){
+        modify_css_font_size("14px");
+    } else if(sizeChoice == 1){
+        modify_css_font_size("16px");
+    } else if(sizeChoice == 2){
+        modify_css_font_size("18px");
+    } else if(sizeChoice == 3){
+        modify_css_font_size("20px");
+    } else if(sizeChoice == 4){
+        modify_css_font_size("16px");
+    } else {
+        printf("Unknown size.\n");
     }
 }
