@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="navbar">
+        <header>JS Documentation</header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#What_you_should_already_know">What you should already know</a></li>
+            <li><a class="nav-link" href="#JavaScript_and_Java">JavaScript and Java</a></li>
+            <li><a class="nav-link" href="#Hello_world">Hello world</a></li>
+            <li><a class="nav-link" href="#Variables">Variables</a></li>
+            <li><a class="nav-link" href="#Declaring_variables">Declaring variables</a></li>
+            <li><a class="nav-link" href="#Game_tetris">Game tetris</a></li>
+            
+        </ul>
+    </nav>
+
+    <main id="main-doc">
+        <section id="Introduction" class="main-section">
+            <header>Introduction</header>
+            <p>JavaScript is a cross-platform, object-oriented scripting language...</p>
+            <ul>
+                <li>Client-side JavaScript...</li>
+                <li>Server-side JavaScript...</li>
+            </ul>
+            <p>Example code:</p>
+            <code>
+                console.log('Hello World');
+            </code>
+        </section>
+
+        <section id="What_you_should_already_know" class="main-section">
+            <header>What you should already know</header>
+            <p>Before learning JavaScript, you should have a basic understanding of the following:</p>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Basic computer programming concepts</li>
+            </ul>
+            <p>Example code:</p>
+            <code>
+                let x = 10;
+            </code>
+        </section>
+
+        <section id="JavaScript_and_Java" class="main-section">
+            <header>JavaScript and Java</header>
+            <p>Despite the similar name, JavaScript and Java are distinct languages with different design philosophies.</p>
+            <p>Java is a compiled language, while JavaScript is an interpreted language.</p>
+            <p>Example code:</p>
+            <code>
+                const greeting = "Hello, JavaScript!";
+            </code>
+        </section>
+
+        <section id="Hello_world" class="main-section">
+            <header>Hello world</header>
+            <p>The classic first program in any language is the "Hello, World!" program.</p>
+            <p>In JavaScript, this can be written as:</p>
+            <code>
+                console.log('Hello, World!');
+            </code>
+            <p>This simple example demonstrates how to output text to the console.</p>
+        </section>
+
+        <section id="Variables" class="main-section">
+            <header>Variables</header>
+            <p>Variables are used to store data that can be used later in the program.</p>
+            <p>JavaScript uses the keywords <code>var</code><code>let</code><code>const</code> to declare variables.</p>
+            <p>Example:</p>
+            <code>
+                let myVar = 5;
+            </code>
+            <p>The value of <code>myVar</code> is now 5.</p>
+        </section>
+
+        <section id="Declaring_variables" class="main-section">
+            <header>Declaring variables</header>
+            <p>Variables can be declared using different keywords based on the scope and the mutability required.</p>
+            <ul>
+                <li><code>var</code> - Function-scoped or globally-scoped, can be redeclared.</li>
+                <li><code>let</code> - Block-scoped, cannot be redeclared.</li>
+                <li><code>const</code> - Block-scoped, read-only constant.</li>
+            </ul>
+            <p>Example:</p>
+            <code>
+                const PI = 3.14;
+            </code>
+            <p>The value of <code>PI</code> is constant and cannot be changed.</p>
+        </section>
+
+        <section id="Game_tetris" class="main-section">
+            <header>Game tetris</header>
+            <p>This is one of the cool things that you can program using JavaScript:</p>
+            <p>
+            Tetris is a fast-paced puzzle game where differently shaped blocks (called tetrominoes) fall from the top of the screen. 
+            Your goal is to rotate and move these pieces to form complete horizontal lines. 
+            When a line is completed, it disappears and you earn points. 
+            As the game progresses, the pieces fall faster, making it harder to keep the board clear. 
+            The game ends when the stack of pieces reaches the top.   
+            </p>
+            
+            <div class="tetris-container">
+                <div class="tetris-controls">
+                    <p><strong>Controls:</strong></p>
+                    <ul>
+                        <li><strong>A/D</strong> - Move left/right</li>
+                        <li><strong>W</strong> - Rotate piece</li>
+                        <li><strong>S</strong> - Move down faster</li>
+                        <li><strong>Tab</strong> - Hard drop</li>
+                        <li><strong>R</strong> - Restart game (after it ends)</li>
+                    </ul>
+                </div>
+                <div id="start-screen">
+                    <button id="start-button">Start Game</button>
+                    <p class="start-hint">or press <strong>Space</strong> to start</p>
+                </div>
+                <canvas id="game"></canvas>
+            </div>
+        </section>
+
+
+        
+    </main>
+
+    <script src="tetris.js"></script>
+</body>
+</html>
