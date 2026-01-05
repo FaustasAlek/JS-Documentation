@@ -74,6 +74,26 @@ body {
     display: block;
 }
 
+.language-switch-button {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--code-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 80px; /* Position next to the theme switch button */
+    border: 3px solid var(--bg);
+    cursor: pointer;
+}
+
+.language-switch-button svg {
+    fill: var(--bg);
+}
+
 #navbar {
     width: 260px;
     position: fixed;
