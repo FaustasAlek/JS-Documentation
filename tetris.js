@@ -421,7 +421,9 @@ function render(ctx, state) {
     ctx.fillStyle = COLOR_FONT;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Game over!', GRID_WIDTH / 2, CANVAS_HEIGHT / 2);
+    const lang = localStorage.getItem('language') || 'en';
+    const gameOverText = translations[lang]['game-over'] || 'Game Over!';
+    ctx.fillText(gameOverText, GRID_WIDTH / 2, CANVAS_HEIGHT / 2);
   }
 }
 
